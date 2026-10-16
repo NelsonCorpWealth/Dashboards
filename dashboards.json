@@ -15,6 +15,16 @@
       "url": "https://nelsoncorpwealth.github.io/Performance-Dashboard/"
     },
     {
+      "id": "derisk-tracker",
+      "name": "De-Risking Trade Tracker",
+      "short": "Trade Tracker",
+      "category": "Trade Analytics",
+      "icon": "shield",
+      "description": "How the current de-risking trade is doing against staying invested, by strategy and by sleeve, with the record of closed trades.",
+      "cadence": "Live during market hours",
+      "url": "https://nelsoncorpwealth.github.io/Derisk-Tracker/"
+    },
+    {
       "id": "big-picture",
       "name": "The Big Picture Risk Model",
       "short": "Big Picture",
@@ -33,16 +43,6 @@
       "description": "Current signal, level and key levels for every model in the suite, with production and research models flagged and recent changes highlighted.",
       "cadence": "Updated weekly",
       "url": "https://nelsoncorpwealth.github.io/Model-Dashboard/"
-    },
-    {
-      "id": "derisk-tracker",
-      "name": "De-Risking Trade Tracker",
-      "short": "Trade Tracker",
-      "category": "Trade Analytics",
-      "icon": "shield",
-      "description": "How the current de-risking trade is doing against staying invested, by strategy and by sleeve, with the record of closed trades.",
-      "cadence": "Live during market hours",
-      "url": "https://nelsoncorpwealth.github.io/Derisk-Tracker/"
     },
     {
       "id": "allocation-overview",
