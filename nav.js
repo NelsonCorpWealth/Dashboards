@@ -12,6 +12,12 @@
  *
  * The strip is added below the standard header, so the 72px header and
  * 59px title bar are untouched.
+ *
+ * The strip only renders when the page is served from the same host as the
+ * hub (nelsoncorpwealth.github.io). A copy of a dashboard published anywhere
+ * else, such as the Big Picture page on nelsoncorp.com, stays untouched even
+ * though it carries the same script tag. Add data-force="true" to the script
+ * tag to override that check (useful for local testing).
  */
 (function () {
   'use strict';
@@ -65,6 +71,12 @@
   function render(data) {
     var here = norm(window.location.href);
     var hub = data.hub || {};
+    var force = script && script.getAttribute('data-force') === 'true';
+    if (!force) {
+      try {
+        if (new URL(hub.url || base).host.toLowerCase() !== window.location.host.toLowerCase()) return;
+      } catch (e) { return; }
+    }
     var items = (data.dashboards || []).filter(function (d) { return d && d.url && !d.hidden; });
     if (!items.length) return;
 
