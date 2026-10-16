@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboards | NelsonCorp Wealth Management</title>
+<meta name="description" content="Launch page for NelsonCorp Wealth Management's advisor dashboards.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#2d6a4f;--green-dark:#1b4332;--green-mid:#40916c;--green-light:#d8f3dc;--green-xlight:#f0faf2;
+  --gold:#c9a84c;--gold-light:#f0d080;--red:#b83232;--off-white:#f8f9f7;--light-gray:#eef0eb;--border:#dde5d8;
+  --text-dark:#1b2e1f;--text-mid:#3d5240;--text-light:#7a917e;--pos:#1a6b3c;--neg:#b83232;--neu:#7a6a2a}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--off-white);color:var(--text-dark);min-height:100vh;display:flex;flex-direction:column}
+
+/* ---- Standard NelsonCorp dashboard header (do not alter dimensions) ---- */
+.hdr{background:var(--green-dark);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px;border-bottom:4px solid var(--gold);flex-wrap:wrap;gap:8px;line-height:normal}
+.hdr-left{display:flex;align-items:center;gap:14px}
+.logo-img{height:42px;filter:brightness(0) invert(1);object-fit:contain}
+.hdr-div{width:1px;height:30px;background:rgba(255,255,255,0.18)}
+.hdr-sub{font-size:0.8rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase}
+.hdr-date{font-size:0.82rem;color:rgba(255,255,255,0.4)}
+.title-bar{background:var(--green);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.title-bar h1{margin:0;font-family:'Merriweather',serif;font-size:1.35rem;font-weight:400;line-height:normal;color:#fff}
+.title-bar h1 span{color:var(--gold-light)}
+.title-meta{font-size:0.82rem;color:rgba(255,255,255,0.7);letter-spacing:0.04em}
+@media(max-width:768px){.hdr,.title-bar{padding-left:18px;padding-right:18px}}
+@media(max-width:600px){.hdr{height:auto;padding-top:10px;padding-bottom:10px}.hdr-sub{font-size:0.7rem}.hdr-date{font-size:0.72rem}.title-bar h1{font-size:1.1rem}}
+
+/* ---- Hero band ---- */
+.hero{position:relative;background:linear-gradient(135deg,var(--green-dark) 0%,#235a42 55%,var(--green) 100%);color:#fff;overflow:hidden}
+.hero svg.bg{position:absolute;right:-40px;top:-60px;width:620px;height:620px;opacity:.16;pointer-events:none}
+.hero-in{position:relative;max-width:1100px;margin:0 auto;padding:52px 40px 120px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end}
+.hero h2{font-family:'Merriweather',serif;font-weight:300;font-size:2.15rem;line-height:1.22;margin:0 0 14px;letter-spacing:-0.005em}
+.hero h2 em{font-style:italic;color:var(--gold-light)}
+.hero p{margin:0;font-size:1.05rem;line-height:1.55;color:rgba(255,255,255,.78);max-width:56ch}
+.hero-side{display:grid;grid-template-columns:1fr 1fr;gap:14px;justify-self:end;width:100%;max-width:380px}
+.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:14px 16px;backdrop-filter:blur(2px)}
+.stat .k{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
+.stat .v{font-family:'Merriweather',serif;font-size:1.5rem;font-weight:300;line-height:1.1}
+.stat .v small{font-family:'Source Sans 3',sans-serif;font-size:.85rem;color:rgba(255,255,255,.65);margin-left:4px}
+.legend{grid-column:1/-1;display:flex;gap:18px;font-size:.78rem;color:rgba(255,255,255,.7);padding-top:2px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);flex:none}
+.dot.live{background:#6fd49a;box-shadow:0 0 0 3px rgba(111,212,154,.25)}
+
+/* ---- Cards ---- */
+main{flex:1;width:100%;max-width:1100px;margin:-78px auto 0;padding:0 40px 56px;position:relative}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px 26px 20px;text-decoration:none;color:inherit;min-height:220px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(27,46,31,.04),0 10px 30px -18px rgba(27,67,50,.35);transition:box-shadow .2s,transform .2s,border-color .2s;
+  opacity:0;transform:translateY(14px);animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards}
+.card:nth-child(2){animation-delay:.07s}.card:nth-child(3){animation-delay:.14s}.card:nth-child(4){animation-delay:.21s}.card:nth-child(5){animation-delay:.28s}.card:nth-child(6){animation-delay:.35s}
+@keyframes rise{to{opacity:1;transform:none}}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);transition:background .2s}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:#cfdccb;box-shadow:0 2px 4px rgba(27,46,31,.05),0 22px 40px -20px rgba(27,67,50,.45);outline:none}
+.card:hover::before,.card:focus-visible::before{background:var(--gold)}
+.card:focus-visible{box-shadow:0 0 0 3px var(--green-light)}
+.num{position:absolute;right:18px;top:6px;font-family:'Merriweather',serif;font-size:4.4rem;font-weight:700;line-height:1;color:var(--green-xlight);letter-spacing:-.04em;user-select:none;pointer-events:none;transition:color .2s}
+.card:hover .num{color:#e7f5ea}
+.card-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;position:relative}
+.icon{width:46px;height:46px;border-radius:10px;background:var(--green-xlight);border:1px solid var(--green-light);display:flex;align-items:center;justify-content:center;color:var(--green);flex:none;transition:background .2s,color .2s,border-color .2s}
+.icon svg{width:24px;height:24px}
+.card:hover .icon{background:var(--green);border-color:var(--green);color:#fff}
+.eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin:0 0 4px}
+.card h3{font-family:'Merriweather',serif;font-weight:400;font-size:1.22rem;line-height:1.3;color:var(--green-dark);margin:0}
+.card p{margin:0;font-size:.96rem;line-height:1.55;color:var(--text-mid);flex:1;position:relative}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;padding-top:14px;border-top:1px solid var(--light-gray)}
+.cadence{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.03em;color:var(--text-mid);background:var(--off-white);border:1px solid var(--border);border-radius:999px;padding:4px 11px 4px 9px}
+.cadence .dot{background:var(--text-light)}
+.cadence.live{color:var(--pos);border-color:#bfe3cb;background:#eef9f1}
+.cadence.live .dot{background:var(--pos);box-shadow:0 0 0 3px rgba(26,107,60,.15);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(26,107,60,.35)}70%{box-shadow:0 0 0 6px rgba(26,107,60,0)}100%{box-shadow:0 0 0 0 rgba(26,107,60,0)}}
+.go{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.go i{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--green);display:inline-flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.go i svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .go i{background:var(--green);color:#fff;transform:translateX(3px)}
+
+/* ---- Footer notes ---- */
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.tip{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:#fff;border:1px solid var(--border);border-radius:6px;font-size:.92rem;line-height:1.5;color:var(--text-mid)}
+.tip b{display:block;color:var(--text-dark);font-weight:600;margin-bottom:2px}
+.tip .icon{width:38px;height:38px;border-radius:8px}
+.tip .icon svg{width:20px;height:20px}
+.status{grid-column:1/-1;padding:40px 0;text-align:center;color:var(--text-light);font-size:.95rem;background:#fff;border:1px solid var(--border);border-radius:6px}
+.status.err{color:var(--red)}
+
+footer{background:var(--green-dark);color:rgba(255,255,255,.5);padding:26px 40px 30px;font-size:.7rem;line-height:1.55;border-top:4px solid var(--gold)}
+footer .inner{max-width:1100px;margin:0 auto}
+footer p{margin:0 0 6px}
+footer .meta{font-size:.78rem;color:rgba(255,255,255,.75);margin-bottom:10px}
+
+@media(max-width:900px){.hero-in{grid-template-columns:1fr;padding-bottom:104px}.hero-side{justify-self:start;max-width:none}.hero svg.bg{width:460px;height:460px;right:-120px}}
+@media(max-width:860px){.grid,.notes{grid-template-columns:1fr}}
+@media(max-width:768px){.hero-in{padding:36px 18px 92px}.hero h2{font-size:1.7rem}main{padding:0 18px 40px;margin-top:-66px}footer{padding-left:18px;padding-right:18px}.num{font-size:3.6rem}}
+.card-top{padding-right:64px}
+@media(max-width:600px){.num{display:none}.card-top{padding-right:0}}
+@media(prefers-reduced-motion:reduce){.card{animation:none;opacity:1;transform:none}.cadence.live .dot{animation:none}.card,.go i,.icon{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-left">
+    <img src="https://nelsoncorp.com/wp-content/uploads/2025/06/NelsonCorp-Logo-2025.png" class="logo-img" alt="NelsonCorp" onerror="this.style.display='none'">
+    <div class="hdr-div"></div>
+    <div class="hdr-sub">Advisor Dashboards</div>
+  </div>
+  <div class="hdr-date" id="hdr-date"></div>
+</div>
+<div class="title-bar">
+  <h1>NelsonCorp <span>Dashboards</span></h1>
+  <div class="title-meta">Investment Management</div>
+</div>
+
+<section class="hero" aria-labelledby="hero-h">
+  <svg class="bg" viewBox="0 0 600 600" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1">
+    <g id="rings"></g>
+    <g id="ticks" stroke="#f0d080"></g>
+  </svg>
+  <div class="hero-in">
+    <div>
+      <h2 id="hero-h">Every dashboard the investment team publishes, <em>in one place.</em></h2>
+      <p>Bookmark this page. The links below always point to the current version of each tool, so this is the only address worth saving.</p>
+    </div>
+    <div class="hero-side">
+      <div class="stat"><div class="k">Dashboards</div><div class="v" id="stat-count">–</div></div>
+      <div class="stat"><div class="k">Live pages</div><div class="v" id="stat-live">–</div></div>
+      <div class="legend"><span><i class="dot live"></i>Live during market hours</span><span><i class="dot"></i>Refreshed on a schedule</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="grid" id="grid"><div class="status">Loading dashboards…</div></div>
+
+  <div class="notes">
+    <div class="tip">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+      <div><b>Moving between dashboards</b>Each dashboard carries a navigation strip just under its title bar. Use it to jump to another dashboard or come back here.</div>
+    </div>
+    <div class="tip">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg></div>
+      <div><b>Reading the labels</b>Pages marked live update during market hours. The others are refreshed on a set schedule and show an as-of date on the page.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="meta">Internal tool for NelsonCorp Wealth Management advisors and staff. Questions about a dashboard: Austin Eck.</p>
+    <p>Securities offered through Registered Representatives of Cambridge Investment Research, Inc., a Broker/Dealer, Member FINRA/SIPC. Advisory services offered through Cambridge Investment Research Advisors, Inc., a Registered Investment Advisor. NelsonCorp Wealth Management and Cambridge are not affiliated.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.getElementById('hdr-date').textContent =
+    new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+  /* decorative gauge rings in the hero */
+  (function(){
+    var rings=document.getElementById('rings'), ticks=document.getElementById('ticks'), s='';
+    for(var r=90;r<=300;r+=42){ s+='<circle cx="300" cy="300" r="'+r+'" stroke-opacity="'+(0.9-(r-90)/300).toFixed(2)+'"/>'; }
+    rings.innerHTML=s; s='';
+    for(var i=0;i<72;i++){ var a=i*5*Math.PI/180, R1=i%6===0?268:280, R2=300;
+      s+='<line x1="'+(300+R1*Math.cos(a)).toFixed(1)+'" y1="'+(300+R1*Math.sin(a)).toFixed(1)+'" x2="'+(300+R2*Math.cos(a)).toFixed(1)+'" y2="'+(300+R2*Math.sin(a)).toFixed(1)+'" stroke-opacity="'+(i%6===0?0.9:0.4)+'"/>'; }
+    ticks.innerHTML=s;
+  })();
+
+  var ICONS = {
+    chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="m4 15 5-6 4 3 7-8"/><path d="M16 4h4v4"/></svg>',
+    gauge:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17 16 9"/><circle cx="12" cy="17" r="1.4" fill="currentColor"/><path d="M4 21h16"/></svg>',
+    signals:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h8M4 12h12M4 18h6"/><circle cx="18" cy="6" r="2"/><circle cx="20" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>',
+    shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3z"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>',
+    allocation:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9h-9V3z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15V3.5z"/></svg>',
+    grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>'
+  };
+  var ARROW='<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>';
+
+  var grid = document.getElementById('grid');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function pad(n){return (n<10?'0':'')+n;}
+
+  function render(list){
+    var items = list.filter(function(d){return d && d.url && !d.hidden;});
+    if(!items.length){grid.innerHTML='<div class="status">No dashboards listed yet.</div>';return;}
+    var live = items.filter(function(d){return /live/i.test(d.cadence||'');}).length;
+    grid.innerHTML = items.map(function(d,i){
+      var isLive = /live/i.test(d.cadence||'');
+      var icon = ICONS[d.icon] || ICONS.grid;
+      return '<a class="card" href="'+esc(d.url)+'">'
+        + '<div class="num" aria-hidden="true">'+pad(i+1)+'</div>'
+        + '<div class="card-top"><div class="icon">'+icon+'</div><div><div class="eyebrow">'+esc(d.category)+'</div><h3>'+esc(d.name)+'</h3></div></div>'
+        + '<p>'+esc(d.description)+'</p>'
+        + '<div class="card-foot">'
+        +   '<span class="cadence'+(isLive?' live':'')+'"><i class="dot"></i>'+esc(d.cadence)+'</span>'
+        +   '<span class="go">Open <i>'+ARROW+'</i></span>'
+        + '</div>'
+        + '</a>';
+    }).join('');
+    document.getElementById('stat-count').textContent = items.length;
+    document.getElementById('stat-live').innerHTML = live+'<small>of '+items.length+'</small>';
+  }
+
+  fetch('dashboards.json?v='+Date.now(), {cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(data){ render(data.dashboards||[]); })
+    .catch(function(e){
+      grid.innerHTML='<div class="status err">Could not load the dashboard list ('+esc(e.message)+'). Check that dashboards.json is published next to this page.</div>';
+    });
+})();
+</script>
+</body>
+</html>
