@@ -1,0 +1,58 @@
+{
+  "hub": {
+    "name": "Dashboards",
+    "url": "https://nelsoncorpwealth.github.io/Dashboards/"
+  },
+  "dashboards": [
+    {
+      "id": "performance",
+      "name": "Daily Portfolio Performance",
+      "short": "Daily Performance",
+      "category": "Portfolio Analytics",
+      "icon": "chart",
+      "description": "Today's return and year-to-date figures for the benchmarks, strategy portfolios and sleeves, with look-through ETF holdings and the day's winners and losers.",
+      "cadence": "Live during market hours",
+      "url": "https://nelsoncorpwealth.github.io/Performance-Dashboard/"
+    },
+    {
+      "id": "big-picture",
+      "name": "The Big Picture Risk Model",
+      "short": "Big Picture",
+      "category": "Risk Model Analytics",
+      "icon": "gauge",
+      "description": "The weight-of-the-evidence composite and its three components: market action, investor behavior and the macro-economic environment.",
+      "cadence": "Updated weekly",
+      "url": "https://nelsoncorpwealth.github.io/Big-Picture-Overview/"
+    },
+    {
+      "id": "model-dashboard",
+      "name": "Model Dashboard",
+      "short": "Model Dashboard",
+      "category": "Investment Management",
+      "icon": "signals",
+      "description": "Current signal, level and key levels for every model in the suite, with production and research models flagged and recent changes highlighted.",
+      "cadence": "Updated weekly",
+      "url": "https://nelsoncorpwealth.github.io/Model-Dashboard/"
+    },
+    {
+      "id": "derisk-tracker",
+      "name": "De-Risking Trade Tracker",
+      "short": "Trade Tracker",
+      "category": "Trade Analytics",
+      "icon": "shield",
+      "description": "How the current de-risking trade is doing against staying invested, by strategy and by sleeve, with the record of closed trades.",
+      "cadence": "Live during market hours",
+      "url": "https://nelsoncorpwealth.github.io/Derisk-Tracker/"
+    },
+    {
+      "id": "allocation-overview",
+      "name": "Model Allocation Overview",
+      "short": "Allocations",
+      "category": "Portfolio Construction",
+      "icon": "allocation",
+      "description": "Building-block mix and equity range for every model, with current equity exposure shown against the range.",
+      "cadence": "Updated daily",
+      "url": "https://nelsoncorpwealth.github.io/Allocation-Overview/"
+    }
+  ]
+}
